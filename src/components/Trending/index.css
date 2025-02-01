@@ -1,0 +1,12 @@
+.icon {
+  color: hsl(0, 100%, 50%);
+  margin-left: 12px;
+  margin-top: 10px;
+  font-size: 21px;
+}
+@media screen and (min-width: 768px) {
+  .icon {
+    margin-left: 24px;
+    margin-top: 22px;
+  }
+}

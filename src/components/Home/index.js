@@ -1,7 +1,6 @@
 import {Component} from 'react'
-import {IoIosSearch} from 'react-icons/io'
+import {IoIosSearch, IoMdClose} from 'react-icons/io'
 import Cookies from 'js-cookie'
-
 import Loader from 'react-loader-spinner'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
@@ -16,7 +15,7 @@ import {
   SearchContainer,
   SearchInput,
   SearchIconContainer,
-  SearchIcon,
+  SearchButton,
   LoaderContainer,
   VideoCardContainer,
   VideoPremium,
@@ -26,6 +25,8 @@ import {
   LogoContent,
   GetButton,
   Premium,
+  CloseButton,
+  LogoCon,
   VideosContainer,
 } from './styledComponents'
 import ThemeChange from '../../context/ThemeChange'
@@ -42,6 +43,7 @@ class Home extends Component {
     videosList: [],
     apiStatus: apiStatusConstant.initial,
     searchInput: '',
+    close: false,
   }
 
   componentDidMount() {
@@ -49,9 +51,10 @@ class Home extends Component {
   }
 
   getHomeVideos = async () => {
+    const {searchInput} = this.state
     this.setState({apiStatus: apiStatusConstant.inProgress})
     const token = Cookies.get('jwt_token')
-    const url = 'https://apis.ccbp.in/videos/all?search='
+    const url = `https://apis.ccbp.in/videos/all?search=${searchInput}`
     const options = {
       method: 'GET',
       headers: {
@@ -59,19 +62,20 @@ class Home extends Component {
       },
     }
     const response = await fetch(url, options)
-    const data = await response.json()
-    const modifiedData = data.videos.map(eachVideo => ({
-      channel: {
-        name: eachVideo.channel.name,
-        profileImageUrl: eachVideo.channel.profile_image_url,
-      },
-      id: eachVideo.id,
-      publishedAt: eachVideo.published_at,
-      thumbnailUrl: eachVideo.thumbnail_url,
-      title: eachVideo.title,
-      viewCount: eachVideo.view_count,
-    }))
+
     if (response.ok === true) {
+      const data = await response.json()
+      const modifiedData = data.videos.map(eachVideo => ({
+        channel: {
+          name: eachVideo.channel.name,
+          profileImageUrl: eachVideo.channel.profile_image_url,
+        },
+        id: eachVideo.id,
+        publishedAt: eachVideo.published_at,
+        thumbnailUrl: eachVideo.thumbnail_url,
+        title: eachVideo.title,
+        viewCount: eachVideo.view_count,
+      }))
       this.setState({
         videosList: modifiedData,
         apiStatus: apiStatusConstant.success,
@@ -142,16 +146,20 @@ class Home extends Component {
       <ThemeChange.Consumer>
         {value => {
           const {isDark} = value
+          const {close} = this.state
           const searchBg = isDark ? 'transparent' : '#ffffff'
           const iconBg = isDark ? '#424242' : '#e2e8f0'
-          const videoBgColor = isDark ? '#0f0f0f' : '#f1f1f1'
+          const videoBgColor = isDark ? '#181818' : '#f1f1f1'
 
           const onChangeSearchInput = event => {
             this.setState({searchInput: event.target.value})
           }
 
           const enterInput = () => {
-            this.onChangeSearch()
+            this.getHomeVideos()
+          }
+          const closeBanner = () => {
+            this.setState({close: true})
           }
 
           return (
@@ -161,17 +169,34 @@ class Home extends Component {
                 <HomeSideNav>
                   <SideBar />
                   <VideoPremium>
-                    <Premium>
-                      <WebsiteLogo
-                        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                        alt="nxt watch logo"
-                      />
-                      <LogoContent>
-                        Buy Nxt Watch Premium prepaid plans with UPI
-                      </LogoContent>
+                    <Premium data-testid="banner">
+                      <LogoCon>
+                        <WebsiteLogo
+                          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                          alt="nxt watch logo"
+                        />
+                        <CloseButton
+                          onClick={closeBanner}
+                          type="button"
+                          data-testid="close"
+                        >
+                          <IoMdClose />
+                        </CloseButton>
+                      </LogoCon>
+                      {close ? (
+                        ''
+                      ) : (
+                        <LogoContent>
+                          Buy Nxt Watch Premium prepaid plans with UPI
+                        </LogoContent>
+                      )}
+
                       <GetButton type="button">GET IT NOW</GetButton>
                     </Premium>
-                    <VideosContainer videoBgColor={videoBgColor}>
+                    <VideosContainer
+                      videoBgColor={videoBgColor}
+                      data-testid="home"
+                    >
                       <SearchInputContainer>
                         <SearchContainer searchBg={searchBg}>
                           <SearchInput
@@ -181,13 +206,14 @@ class Home extends Component {
                             onChange={onChangeSearchInput}
                           />
                         </SearchContainer>
-                        <SearchIconContainer
-                          iconBg={iconBg}
-                          onClick={enterInput}
-                        >
-                          <SearchIcon>
+                        <SearchIconContainer iconBg={iconBg}>
+                          <SearchButton
+                            data-testid="searchButton"
+                            onClick={enterInput}
+                            type="button"
+                          >
                             <IoIosSearch />
-                          </SearchIcon>
+                          </SearchButton>
                         </SearchIconContainer>
                       </SearchInputContainer>
                       {this.renderSwitchView()}

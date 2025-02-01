@@ -18,6 +18,7 @@ const FailureView = props => {
           ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
           : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
         const oopsColor = isDark ? '#ffffff' : '#313131'
+
         return (
           <FailureContainer>
             <FailureImg src={failureImage} alt="failure view" />

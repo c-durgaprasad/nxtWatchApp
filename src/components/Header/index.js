@@ -250,7 +250,7 @@ class Header extends Component {
                       {close => (
                         <ModalContainer>
                           <ModalContent>
-                            Are you sure, you want logout
+                            Are you sure, you want to logout
                           </ModalContent>
                           <ModalRow>
                             <CancelButton type="button" onClick={() => close()}>

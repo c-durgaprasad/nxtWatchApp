@@ -5,11 +5,12 @@ import {
   ViewCount,
   World,
   GameContainer,
+  GameLink,
 } from './styledComponents'
 
 const GameCard = props => {
   const {eachItem} = props
-  const {thumbnailUrl, title, viewCount} = eachItem
+  const {thumbnailUrl, title, viewCount, id} = eachItem
   return (
     <ThemeChange.Consumer>
       {value => {
@@ -17,12 +18,12 @@ const GameCard = props => {
         const gameName = isDark ? '#ffffff' : '#0f0f0f'
         return (
           <GameContainer>
-            <>
-              <GameImg src={thumbnailUrl} />
+            <GameLink to={`/videos/${id}`}>
+              <GameImg src={thumbnailUrl} alt="video thumbnail" />
               <GameName gameName={gameName}>{title}</GameName>
               <ViewCount>{viewCount} Watching</ViewCount>
               <World>Worldwide</World>
-            </>
+            </GameLink>
           </GameContainer>
         )
       }}

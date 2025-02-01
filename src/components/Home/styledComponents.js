@@ -54,15 +54,16 @@ export const SearchIconContainer = styled.div`
   width: 55px;
   height: 25px;
   padding-left: 18px;
-  padding-top: 3px;
   @media screen and (min-width: 576px) {
     height: 24px;
   }
 `
-export const SearchIcon = styled.div`
+export const SearchButton = styled.button`
   font-size: 12px;
-  margin-top: 2px;
   margin-left: 2px;
+  background-color: transparent;
+  border: none;
+  outline: none;
 `
 
 export const LoaderContainer = styled.div`
@@ -104,6 +105,7 @@ export const GetButton = styled.button`
   color: #181818;
   font-weight: 700;
   font-size: 10px;
+  margin-top: 10px;
 `
 export const Premium = styled.div`
   margin-left: 20px;
@@ -126,4 +128,18 @@ export const VideosContainer = styled.div`
 export const VideoPremium = styled.div`
   display: flex;
   flex-direction: column;
+`
+export const CloseButton = styled.button`
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  margin-right: 35px;
+  @media screen and (min-width: 768px) {
+    margin-right: 70px;
+  }
+`
+export const LogoCon = styled.div`
+  display: flex;
+  justify-content: space-between;
 `

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 export const GameImg = styled.img`
   width: 120px;
@@ -11,7 +12,7 @@ export const GameImg = styled.img`
     margin-top: 20px;
   }
 `
-export const GameName = styled.h1`
+export const GameName = styled.p`
   font-family: 'Roboto';
   font-size: 12px;
   font-weight: 600;
@@ -39,7 +40,7 @@ export const World = styled.p`
   font-weight: 500;
   padding-top: 2px;
 `
-export const GameContainer = styled.div`
+export const GameContainer = styled.li`
   display: flex;
   flex-direction: column;
   margin: 10px;
@@ -48,4 +49,7 @@ export const GameContainer = styled.div`
   @media screen and (min-width: 576px) {
     margin: 5px;
   }
+`
+export const GameLink = styled(Link)`
+  text-decoration: none;
 `

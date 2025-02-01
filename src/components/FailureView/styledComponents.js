@@ -16,7 +16,7 @@ export const FailureImg = styled.img`
   }
 `
 
-export const Oops = styled.p`
+export const Oops = styled.h1`
   font-family: 'Roboto';
   font-size: 14px;
   color: ${props => props.oopsColor};

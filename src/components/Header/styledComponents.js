@@ -81,17 +81,16 @@ export const Logout = styled.button`
   margin-bottom: 10px;
 `
 export const MenuPop = styled.div`
-  height: 400px;
+  height: 200px;
 `
 
 export const ModalMenu = styled.div`
   width: 100vw;
-  height: 1000px;
 `
 
 export const ModalContainer = styled.div`
   width: 100%;
-  height: 130px;
+  height: 300px;
   width: 250px;
   display: flex;
   flex-direction: column;

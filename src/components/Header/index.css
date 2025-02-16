@@ -1,8 +1,9 @@
 .popup-content {
-  width: 250px;
+  width: 260px;
   height: 130px;
   background-color: #ffffff;
 }
-.popup-menu {
-  background-color: #ffffff;
+.popup {
+  height: 100vh;
+  background-color: transparent;
 }

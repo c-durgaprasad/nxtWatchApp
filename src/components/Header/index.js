@@ -107,107 +107,98 @@ class Header extends Component {
                           <IoMenu />
                         </Button>
                       }
-                      className="popup-menu"
                     >
                       {close => (
-                        <>
-                          <MenuPop>
-                            <NavUl bg={bg}>
-                              <NavLi
-                                to="/"
-                                bgColor={
-                                  activeTab === 'Home' ? tabColor : 'none'
+                        <MenuPop>
+                          <NavUl bg={bg}>
+                            <NavLi
+                              to="/"
+                              bgColor={activeTab === 'Home' ? tabColor : 'none'}
+                              onClick={changeHomeTab}
+                            >
+                              <Icon
+                                iconColor={
+                                  activeTab === 'Home' ? '#ff0000' : iconColor
                                 }
-                                onClick={changeHomeTab}
                               >
-                                <Icon
-                                  iconColor={
-                                    activeTab === 'Home' ? '#ff0000' : iconColor
-                                  }
-                                >
-                                  <RiHome4Fill />
-                                </Icon>
-                                <IconName
-                                  textColor={textColor}
-                                  weight={activeTab === 'Home' ? '800' : ''}
-                                >
-                                  Home
-                                </IconName>
-                              </NavLi>
+                                <RiHome4Fill />
+                              </Icon>
+                              <IconName
+                                textColor={textColor}
+                                weight={activeTab === 'Home' ? '800' : ''}
+                              >
+                                Home
+                              </IconName>
+                            </NavLi>
 
-                              <NavLi
-                                to="/trending"
-                                bgColor={
-                                  activeTab === 'Trending' ? tabColor : 'none'
+                            <NavLi
+                              to="/trending"
+                              bgColor={
+                                activeTab === 'Trending' ? tabColor : 'none'
+                              }
+                              onClick={changeTrendTab}
+                            >
+                              <Icon
+                                iconColor={
+                                  activeTab === 'Trending'
+                                    ? '#ff0000'
+                                    : iconColor
                                 }
-                                onClick={changeTrendTab}
                               >
-                                <Icon
-                                  iconColor={
-                                    activeTab === 'Trending'
-                                      ? '#ff0000'
-                                      : iconColor
-                                  }
-                                >
-                                  <FaFireAlt />
-                                </Icon>
+                                <FaFireAlt />
+                              </Icon>
 
-                                <IconName
-                                  textColor={textColor}
-                                  weight={activeTab === 'Trending' ? '800' : ''}
-                                >
-                                  Trending
-                                </IconName>
-                              </NavLi>
-                              <NavLi
-                                to="/gaming"
-                                bgColor={
-                                  activeTab === 'Gaming' ? tabColor : 'none'
+                              <IconName
+                                textColor={textColor}
+                                weight={activeTab === 'Trending' ? '800' : ''}
+                              >
+                                Trending
+                              </IconName>
+                            </NavLi>
+                            <NavLi
+                              to="/gaming"
+                              bgColor={
+                                activeTab === 'Gaming' ? tabColor : 'none'
+                              }
+                              onClick={changeGameTab}
+                            >
+                              <Icon
+                                iconColor={
+                                  activeTab === 'Gaming' ? '#ff0000' : iconColor
                                 }
-                                onClick={changeGameTab}
                               >
-                                <Icon
-                                  iconColor={
-                                    activeTab === 'Gaming'
-                                      ? '#ff0000'
-                                      : iconColor
-                                  }
-                                >
-                                  <SiYoutubegaming />
-                                </Icon>
+                                <SiYoutubegaming />
+                              </Icon>
 
-                                <IconName
-                                  textColor={textColor}
-                                  weight={activeTab === 'Gaming' ? '800' : ''}
-                                >
-                                  Gaming
-                                </IconName>
-                              </NavLi>
-                              <NavLi
-                                to="/saved-videos"
-                                bgColor={
-                                  activeTab === 'Save' ? tabColor : 'none'
+                              <IconName
+                                textColor={textColor}
+                                weight={activeTab === 'Gaming' ? '800' : ''}
+                              >
+                                Gaming
+                              </IconName>
+                            </NavLi>
+                            <NavLi
+                              to="/saved-videos"
+                              bgColor={activeTab === 'Save' ? tabColor : 'none'}
+                              onClick={changeSaveTab}
+                            >
+                              <Icon
+                                iconColor={
+                                  activeTab === 'Save' ? '#ff0000' : iconColor
                                 }
-                                onClick={changeSaveTab}
                               >
-                                <Icon
-                                  iconColor={
-                                    activeTab === 'Save' ? '#ff0000' : iconColor
-                                  }
-                                >
-                                  <MdPlaylistAdd />
-                                </Icon>
+                                <MdPlaylistAdd />
+                              </Icon>
 
-                                <IconName
-                                  textColor={textColor}
-                                  weight={activeTab === 'Save' ? '800' : ''}
-                                >
-                                  Saved videos
-                                </IconName>
-                              </NavLi>
-                            </NavUl>
-                          </MenuPop>
-                        </>
+                              <IconName
+                                textColor={textColor}
+                                weight={activeTab === 'Save' ? '800' : ''}
+                              >
+                                Saved videos
+                              </IconName>
+                            </NavLi>
+                          </NavUl>
+                        </MenuPop>
                       )}
                     </Popup>
                   </ContainerListItem>
